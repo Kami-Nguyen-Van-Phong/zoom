@@ -12,28 +12,13 @@ export class ZoomSVG extends Component {
         };
         this.imageElement = React.createRef();
     }
-
-    handleDragMove = () => {
-
-    }
-
     componentDidMount() {
         const cropper = new Cropper(this.imageElement.current, {
             zoomable: true,
             scalable: false,
             aspectRatio: 1,
             crop: () => {
-                const canvas = cropper.getCroppedCanvas({
-                    width: 160,
-                    height: 90,
-                    minWidth: 160,
-                    minHeight: 90,
-                    maxWidth: 160,
-                    maxHeight: 90,
-                    fillColor: '#fff',
-                    imageSmoothingEnabled: true,
-                    imageSmoothingQuality: 'high',
-                });
+                const canvas = cropper.getCroppedCanvas();
                 this.setState({ imageDestination: canvas.toDataURL("image/png") });
             }
         });
